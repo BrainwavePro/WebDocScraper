@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import sys
 
 def scrape_documentation(url, headers=None):
@@ -45,7 +45,7 @@ def scrape_documentation(url, headers=None):
 
     # Traverse in-order
     for el in body.descendants:
-        if isinstance(el, BeautifulSoup.Tag) and el.name in ["h1","h2","h3","h4","h5","h6","p","pre","ul","ol"]:
+        if isinstance(el, Tag) and el.name in ["h1","h2","h3","h4","h5","h6","p","pre","ul","ol"]:
             process_element(el)
 
     return content
